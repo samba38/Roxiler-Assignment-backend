@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:5000
+@USER_TOKEN =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE3NjgyOTM4NjIsImV4cCI6MTc2ODM4MDI2Mn0.6fP-YYQGXC7KBGedNg61WRroEhSGJqoiFuDTEfuSNLE
+#################################
+### SIGNUP (NORMAL USER)
+#################################
+POST {{baseUrl}}/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Normal User Full Name Test",
+  "email": "user2@test.com",
+  "password": "Password@123",
+  "address": "Hyderabad, India"
+}
+
+#################################
+### LOGIN (NORMAL USER)
+#################################
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user2@test.com",
+  "password": "Password@123"
+}
+
+#################################
+### GET STORES (USER)
+#################################
+GET {{baseUrl}}/api/user/stores
+Authorization: Bearer {{USER_TOKEN}}
+
+#################################
+### RATE STORE (USER)
+#################################
+POST {{baseUrl}}/api/user/rate
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "store_id": 1,
+  "rating": 5
+}
+
+#################################
+### LOGIN (ADMIN)
+#################################
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@test.com",
+  "password": "Password@123"
+}
